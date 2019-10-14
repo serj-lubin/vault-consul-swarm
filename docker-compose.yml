@@ -29,5 +29,6 @@ networks:
   default:
     external:
       name: core
-    aliases:
+  net:
+   aliases:
           - "{{.Service.Name}}-{{.Task.Slot}}"

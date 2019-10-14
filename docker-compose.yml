@@ -8,13 +8,13 @@ services:
       - 8500:8500
     command: "agent -server -bootstrap-expect 3 -ui -client 0.0.0.0 -bind '{{ GetInterfaceIP \"eth0\" }}'"
     deploy:
-      replicas: 2
+      replicas: 4
 
   server:
     image: consul:1.2.1
     command: "agent -server -retry-join server-bootstrap -client 0.0.0.0 -bind '{{ GetInterfaceIP \"eth0\" }}'"
     deploy:
-      replicas: 2
+      replicas: 4
     depends_on:
       - server-bootstrap
 
@@ -22,7 +22,7 @@ services:
     image: consul:1.2.1
     command: "agent -retry-join server-bootstrap -client 0.0.0.0 -bind '{{ GetInterfaceIP \"eth0\" }}'"
     deploy:
-      replicas: 2
+      replicas: 4
     depends_on:
       - server-bootstrap
 
